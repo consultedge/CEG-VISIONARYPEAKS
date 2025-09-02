@@ -8,6 +8,7 @@ import CallManagement from './pages/CallManagement';
 import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
 import Login from './pages/Login';
+import AiReminder from './pages/AiReminder';
 import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
 
@@ -29,6 +30,7 @@ function App() {
                     <Route path="/calls" element={<CallManagement />} />
                     <Route path="/analytics" element={<Analytics />} />
                     <Route path="/settings" element={<Settings />} />
+                    <Route path="/ai-reminder" element={<AiReminder />} />
                   </Routes>
                 </div>
               </ProtectedRoute>

@@ -3,21 +3,26 @@
 
 // Get API Gateway URL from environment or use placeholder
 const getApiUrl = () => {
-  // First try environment variable (set in Amplify Console)
+  // First try REACT_APP_API_URL for backend
+  if (process.env.REACT_APP_API_URL) {
+    return process.env.REACT_APP_API_URL;
+  }
+
+  // Fallback to API Gateway URL (set in Amplify Console)
   if (process.env.REACT_APP_API_GATEWAY_URL) {
     return process.env.REACT_APP_API_GATEWAY_URL;
   }
-  
+
   // Fallback - you'll need to replace this with your actual API Gateway URL
   // Format: https://[API_ID].execute-api.ap-south-1.amazonaws.com/dev
   const API_ID = 'YOUR_API_GATEWAY_ID'; // Replace with actual API ID
-  
+
   if (API_ID === 'YOUR_API_GATEWAY_ID') {
-    console.warn('⚠️ API Gateway URL not configured. Please set REACT_APP_API_GATEWAY_URL environment variable or update API_ID in api.js');
+    console.warn('⚠️ API URL not configured. Please set REACT_APP_API_URL or REACT_APP_API_GATEWAY_URL environment variable');
     // Return a placeholder that will show error messages
     return 'https://api-not-configured.example.com';
   }
-  
+
   return `https://${API_ID}.execute-api.ap-south-1.amazonaws.com/dev`;
 };
 
@@ -28,25 +33,33 @@ export const API_CONFIG = {
     // Customer Management
     customers: '/customers',
     customerById: (id) => `/customers/${id}`,
-    
+
     // Call Management
     calls: '/calls',
     callById: (id) => `/calls/${id}`,
     initiateCall: '/calls/initiate',
-    
+
     // File Upload
     uploadFile: '/upload',
     processFile: '/process',
-    
+
     // Analytics
     analytics: '/analytics',
     reports: '/reports',
-    
+
     // Settings
     settings: '/settings',
-    
+
     // Health Check
-    health: '/health'
+    health: '/health',
+
+    // New AI Backend Endpoints
+    clients: '/api/clients',
+    chat: '/api/chat',
+    aiRespond: '/api/ai/respond',
+    pollySynthesize: '/api/polly/synthesize',
+    transcribeAudio: '/api/transcribe/audio',
+    conversations: (id) => `/api/conversations/${id}`
   },
   
   // Request headers

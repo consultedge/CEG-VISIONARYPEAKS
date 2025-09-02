@@ -1,0 +1,9 @@
+{
+  "short_name": "AI Calling Agent",
+  "name": "AI Calling Agent Admin Portal",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
